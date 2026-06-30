@@ -2,6 +2,11 @@
 
 A small React landing page for a fictional energy-sector chatbot concept. The project demonstrates frontend structure, simple user interactions, and Google Tag Manager event tracking.
 
+Event tracking was validated in Google Tag Manager Preview Mode and Google Analytics 4 Realtime using Chrome. Safari may restrict analytics requests because of browser privacy protection.
+
+## Live Demo
+https://gtm-energy-chatbot-demo.vercel.app
+
 ## Purpose
 
 This project was created as a compact junior developer portfolio/demo project. It shows:
@@ -103,6 +108,3 @@ npm run build
    - `faq_open`
    - `demo_request_submit`
 
-## Suggested CV bullet
-
-Built a responsive React landing page for a fictional energy-sector chatbot and integrated Google Tag Manager to track user interactions. Implemented custom `dataLayer` events for CTA clicks, FAQ interactions, and form submission, then configured GTM triggers and tags to validate event tracking in preview mode.

@@ -1,110 +1,47 @@
-# Energy Chatbot Demo Landing Page
+## Google Tag Manager and Google Analytics Tracking
 
-A small React landing page for a fictional energy-sector chatbot concept. The project demonstrates frontend structure, simple user interactions, and Google Tag Manager event tracking.
+This project includes Google Tag Manager integration for tracking user interactions on the landing page.
 
-Event tracking was validated in Google Tag Manager Preview Mode and Google Analytics 4 Realtime using Chrome. Safari may restrict analytics requests because of browser privacy protection.
+The website uses custom `dataLayer.push()` events in the React components. These events are handled in Google Tag Manager with Custom Event triggers and sent to Google Analytics 4 as GA4 Event tags.
 
-## Live Demo
-https://gtm-energy-chatbot-demo.vercel.app
+### Tracking setup
 
-## Purpose
+The following custom events are implemented:
 
-This project was created as a compact junior developer portfolio/demo project. It shows:
-
-- React component structure
-- Responsive page layout
-- Basic form handling
-- FAQ accordion interaction
-- Google Tag Manager installation
-- Custom `dataLayer` events for analytics tracking
-
-## Tech stack
-
-- React
-- Vite
-- JavaScript
-- CSS
-- Google Tag Manager
-
-## Main features
-
-- Responsive landing page
-- Energy-sector chatbot product concept
-- Hero section with CTA buttons
-- Feature cards
-- FAQ accordion
-- Demo request form
-- Custom GTM data layer events
-
-## Tracked events
-
-| Event name | Triggered by | Parameters |
+| Event name | Triggered when | Event parameters |
 |---|---|---|
-| `start_demo_click` | User clicks “Start demo” | `section`, `button_text` |
-| `brochure_download_click` | User clicks “Download brochure” | `section`, `button_text` |
-| `faq_open` | User opens an FAQ item | `section`, `faq_question` |
-| `demo_request_submit` | User submits the demo request form | `section`, `form_name` |
+| `start_demo_click` | User clicks the "Start demo" button | `section`, `button_text` |
+| `brochure_download_click` | User clicks the "Download brochure" button | `section`, `button_text` |
+| `faq_open` | User opens an FAQ item | `faq_question` |
+| `demo_request_submit` | User submits the demo request form | `form_name` |
 
-## Google Tag Manager setup
+### Google Tag Manager configuration
 
-The GTM container snippet is included in `index.html`.
+In Google Tag Manager, I configured:
 
-Before publishing, replace the placeholder container ID:
+- one Google tag connected to Google Analytics 4
+- four GA4 Event tags
+- four Custom Event triggers
+- Data Layer Variables for passing event parameters
 
-```html
-GTM-XXXXXXX
-```
+The setup was tested with Google Tag Manager Preview Mode.
 
-with your own GTM container ID.
+### Validation
 
-Recommended GTM configuration:
+The screenshots below show that Google Tag Manager receives the custom events and fires the correct tags.
 
-### Data layer variables
+#### GTM Preview: tags fired
 
-| GTM variable name | Data layer variable name |
-|---|---|
-| `DLV - section` | `section` |
-| `DLV - button_text` | `button_text` |
-| `DLV - faq_question` | `faq_question` |
-| `DLV - form_name` | `form_name` |
+![Google Tag Manager Preview showing fired tags](docs/screenshots/gtm-tags-fired.png)
 
-### Custom event triggers
+The screenshot shows that the main GA4 Google tag and custom GA4 Event tags were fired successfully.
 
-| Trigger name | Event name |
-|---|---|
-| `CE - start_demo_click` | `start_demo_click` |
-| `CE - brochure_download_click` | `brochure_download_click` |
-| `CE - faq_open` | `faq_open` |
-| `CE - demo_request_submit` | `demo_request_submit` |
+#### GA4 Realtime: events received
 
-### Optional GA4 event tags
+![Google Analytics Realtime showing events](docs/screenshots/ga4-realtime-events.png)
 
-Create GA4 event tags for each custom event if you have a GA4 property. Otherwise, use GTM Preview Mode to validate that the events fire correctly.
+The screenshot shows that Google Analytics 4 receives activity from the deployed website.
 
-## How to run locally
+### Browser note
 
-```bash
-npm install
-npm run dev
-```
-
-Open the local URL shown in the terminal.
-
-## How to build
-
-```bash
-npm run build
-```
-
-## How to test GTM events
-
-1. Open Google Tag Manager.
-2. Click **Preview**.
-3. Enter the local or deployed website URL.
-4. Click the page buttons, open FAQ items, and submit the form.
-5. Confirm that these events appear:
-   - `start_demo_click`
-   - `brochure_download_click`
-   - `faq_open`
-   - `demo_request_submit`
-
+The tracking was validated in Chrome using Google Tag Manager Preview Mode and Google Analytics 4 Realtime reports. Safari may restrict analytics requests because of browser privacy protection, so GA4 activity may not always appear there during testing.
